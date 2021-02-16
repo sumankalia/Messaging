@@ -36,6 +36,7 @@ const App = () => {
   const [open, setOpen] = useState(false);
   const [conversations, setConversation] = useState([]);
   const [data, setCurrentData] = useState([]);
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     getConversations();
@@ -101,7 +102,7 @@ const App = () => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Inbox</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div style={{ margin: 5, padding: 20 }}>
@@ -175,6 +176,8 @@ const App = () => {
                     action
                     key={row.timestamp}
                     onClick={() => {
+                      setTitle("Inbox");
+
                       setOpen(true);
                       setCurrentData(
                         conversations.filter(
@@ -212,6 +215,7 @@ const App = () => {
                     action
                     key={row.timestamp}
                     onClick={() => {
+                      setTitle("Outbox");
                       setOpen(true);
                       setCurrentData(
                         conversations.filter(
